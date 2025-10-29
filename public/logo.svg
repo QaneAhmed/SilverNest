@@ -1,0 +1,21 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title>SilverNest</title>
+  <defs>
+    <linearGradient id="nestGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e68a8a" />
+      <stop offset="100%" stop-color="#f6ca83" />
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#nestGradient)" opacity="0.18" />
+  <path
+    d="M16 34c3.5 6.4 9.7 10.2 16 10.2S44.5 40.4 48 34c1.2-2.1-0.4-4.6-2.8-4.6-3.3 0-5.7 2.9-7.6 2.9-1.8 0-3.2-1.5-5.6-1.5s-3.8 1.5-5.6 1.5c-1.9 0-4.3-2.9-7.6-2.9-2.4 0-4 2.5-2.8 4.6Z"
+    fill="url(#nestGradient)"
+  />
+  <path
+    d="M23 26c1.3-3.3 4.5-6 9-6s7.7 2.7 9 6"
+    fill="none"
+    stroke="#e68a8a"
+    stroke-width="2.5"
+    stroke-linecap="round"
+  />
+</svg>
