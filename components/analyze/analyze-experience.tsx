@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import posthog from 'posthog-js';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { StepIndicator } from '@/components/analyze/step-indicator';
@@ -141,6 +142,14 @@ export function AnalyzeExperience() {
       };
 
       saveResult(record);
+
+      if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+        posthog.capture('profile_generated', {
+          platform: form.platform,
+          age: form.age,
+          priorities: form.priorities,
+        });
+      }
       router.push('/result');
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Something went wrong. Try again soon.';
