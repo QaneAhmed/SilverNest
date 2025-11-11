@@ -24,18 +24,18 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://silvernest.example.c
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: 'SilverNest | Confident Profiles for Real Connections',
+    default: 'SilverNest | Write a dating profile that sounds like you',
     template: '%s · SilverNest',
   },
   description:
-    'Feel confident about your dating profile. SilverNest gives calm, practical guidance crafted for adults 40+ seeking meaningful matches.',
+    'Write a dating profile that sounds like you — warm, confident, and ready for what’s next. SilverNest offers tech that understands maturity.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'SilverNest',
     description:
-      'Kind, practical feedback written for real connections — not gimmicks. Improve your dating profile with SilverNest.',
+      'Tech that understands maturity. SilverNest helps you write a profile that feels like yourself.',
     siteName: 'SilverNest',
     url: baseUrl,
     type: 'website',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'SilverNest',
     description:
-      'Kind, practical feedback written for real connections — not gimmicks. Improve your dating profile with SilverNest.',
+      'Write a profile that sounds like you — warm, confident, ready for what’s next.',
   },
   icons: {
     icon: '/logo.svg',

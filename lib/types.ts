@@ -6,16 +6,23 @@ export interface PhotoItem {
   dataUrl?: string;
 }
 
+export interface StoredPhoto {
+  id: string;
+  dataUrl?: string;
+}
+
 export interface AnalyzeFormData {
   profileText: string;
   notes: string;
-  ageBracket: string;
+  name: string;
+  city: string;
+  age: string;
   gender: string;
   platform: string;
   priorities: string[];
   stylePreference: string;
-  lengthPreference: string;
   photoDataUrl?: string;
+  gallery?: StoredPhoto[];
 }
 
 export interface OutputData {

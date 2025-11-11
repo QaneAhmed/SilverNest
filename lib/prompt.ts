@@ -4,14 +4,17 @@ const systemPrompt = `You are an expert writer helping mature adults (40+) craft
 
 function summarizePreferences(data: AnalyzeFormData) {
   const segments = [
+    data.name ? `Name: ${data.name}` : undefined,
+    data.city ? `City: ${data.city}` : undefined,
+    data.age ? `Age: ${data.age}` : undefined,
     data.profileText ? `Current profile draft:\n${data.profileText}` : undefined,
     data.notes ? `Additional context:\n${data.notes}` : undefined,
-    `Age bracket: ${data.ageBracket}`,
+    data.age ? `Age: ${data.age}` : undefined,
     `Gender identity: ${data.gender}`,
     `Primary platform: ${data.platform}`,
     data.priorities.length ? `Priorities: ${data.priorities.join(', ')}` : undefined,
     `Preferred tone/style: ${data.stylePreference}`,
-    `Preferred length: ${data.lengthPreference}`,
+    'Ideal bio length: 150-200 words',
   ].filter(Boolean);
 
   return segments.join('\n\n');
@@ -24,6 +27,8 @@ export function buildMessages(data: AnalyzeFormData) {
 
 User details:
 ${summary}
+
+Keep the overall bio between 150 and 200 words while respecting the requested tone.
 
 Return JSON only, matching this schema:
 {

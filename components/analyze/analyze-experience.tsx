@@ -19,19 +19,19 @@ const priorities = ['Meaningful connection', 'Sense of humor', 'Shared values', 
 const genderOptions = ['Female', 'Male', 'Non-binary', 'Prefer not to say'];
 const platformOptions = ['Hinge', 'Bumble', 'Match', 'Tinder'];
 const styleOptions = ['Warm and encouraging', 'Elegant and refined', 'Playful and witty', 'Direct and confident'];
-const lengthOptions = ['Short (under 120 words)', 'Medium (150-200 words)', 'Expanded (250+ words)'];
-const ageOptions = ['40-44', '45-54', '55-64', '65+'];
 
 const defaultForm: AnalyzeFormData = {
   profileText: '',
   notes: '',
-  ageBracket: '45-54',
+  name: 'Alex',
+  city: 'SilverNest City',
+  age: '52',
   gender: 'Female',
   platform: 'Hinge',
   priorities: ['Meaningful connection'],
   stylePreference: 'Warm and encouraging',
-  lengthPreference: 'Medium (150-200 words)',
   photoDataUrl: undefined,
+  gallery: [],
 };
 
 const createId = () =>
@@ -60,7 +60,8 @@ export function AnalyzeExperience() {
 
   const totalSteps = 3;
   const profileFilled = countCharacters(form.profileText) >= 40;
-  const canProceed = step === 2 ? profileFilled : true;
+  const detailsComplete = form.name.trim().length > 0 && form.city.trim().length > 0 && Number(form.age) >= 18;
+  const canProceed = step === 2 ? profileFilled : step === 3 ? detailsComplete : true;
 
   const fileToDataUrl = (file: File) =>
     new Promise<string>((resolve, reject) => {
@@ -155,6 +156,10 @@ export function AnalyzeExperience() {
       setError('Share a bit more of your current profile so we can offer thoughtful feedback.');
       return;
     }
+    if (step === 3 && !detailsComplete) {
+      setError('Please add your name, city, and age so the preview feels personal.');
+      return;
+    }
     setError(null);
     setStep((prev) => Math.min(prev + 1, totalSteps));
   };
@@ -167,8 +172,8 @@ export function AnalyzeExperience() {
   const photoCount = photos.length;
 
   useEffect(() => {
-    const primary = photos[0]?.dataUrl;
-    setForm((prev) => ({ ...prev, photoDataUrl: primary }));
+    const stored = photos.map((photo) => ({ id: photo.id, dataUrl: photo.dataUrl }));
+    setForm((prev) => ({ ...prev, photoDataUrl: stored[0]?.dataUrl, gallery: stored }));
   }, [photos]);
 
   return (
@@ -211,26 +216,49 @@ export function AnalyzeExperience() {
           {step === 3 && (
             <div className="space-y-6">
               <div className="rounded-[1.75rem] border border-border/80 bg-surface/95 p-6 shadow-card">
-                <Label htmlFor="ageBracket" className="text-base font-semibold text-ink">
-                  Age bracket
+                <Label htmlFor="name" className="text-base font-semibold text-ink">
+                  Your name or nickname
                 </Label>
-                <p className="mt-1 text-sm text-subtle">We tailor the pacing and references to your stage of life.</p>
                 <div className="mt-3">
-                  <Select
-                    value={form.ageBracket}
-                    onValueChange={(value) => setForm((prev) => ({ ...prev, ageBracket: value }))}
-                  >
-                    <SelectTrigger id="ageBracket">
-                      <SelectValue placeholder="Select an age bracket" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {ageOptions.map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <input
+                    id="name"
+                    className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base text-ink shadow-sm focus-visible:border-brand focus-visible:outline-none"
+                    value={form.name}
+                    onChange={(event) => setForm((prev) => ({ ...prev, name: event.target.value }))}
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-border/80 bg-surface/95 p-6 shadow-card">
+                <Label htmlFor="city" className="text-base font-semibold text-ink">
+                  City or region
+                </Label>
+                <p className="mt-1 text-sm text-subtle">We use this to make your preview feel grounded in your life.</p>
+                <div className="mt-3">
+                  <input
+                    id="city"
+                    className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base text-ink shadow-sm focus-visible:border-brand focus-visible:outline-none"
+                    value={form.city}
+                    onChange={(event) => setForm((prev) => ({ ...prev, city: event.target.value }))}
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-border/80 bg-surface/95 p-6 shadow-card">
+                <Label htmlFor="age" className="text-base font-semibold text-ink">
+                  Your age
+                </Label>
+                <p className="mt-1 text-sm text-subtle">Helps us show accurate previews and tailor the copy.</p>
+                <div className="mt-3">
+                  <input
+                    id="age"
+                    type="number"
+                    min={18}
+                    max={99}
+                    className="h-12 w-full rounded-2xl border border-border bg-white px-4 text-base text-ink shadow-sm focus-visible:border-brand focus-visible:outline-none"
+                    value={form.age}
+                    onChange={(event) => setForm((prev) => ({ ...prev, age: event.target.value }))}
+                  />
                 </div>
               </div>
 
@@ -295,28 +323,6 @@ export function AnalyzeExperience() {
                     </SelectTrigger>
                     <SelectContent>
                       {styleOptions.map((option) => (
-                        <SelectItem key={option} value={option}>
-                          {option}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-
-              <div className="rounded-[1.75rem] border border-border/80 bg-surface/95 p-6 shadow-card">
-                <Label className="text-base font-semibold text-ink">Preferred length</Label>
-                <p className="mt-1 text-sm text-subtle">We’ll shape the final draft to fit your comfort zone.</p>
-                <div className="mt-3">
-                  <Select
-                    value={form.lengthPreference}
-                    onValueChange={(value) => setForm((prev) => ({ ...prev, lengthPreference: value }))}
-                  >
-                    <SelectTrigger id="lengthPreference">
-                      <SelectValue placeholder="Choose a length" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {lengthOptions.map((option) => (
                         <SelectItem key={option} value={option}>
                           {option}
                         </SelectItem>

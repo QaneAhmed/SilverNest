@@ -26,7 +26,7 @@ export function HowItWorks({ className }: { className?: string }) {
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="max-w-2xl">
           <h2 id="how-it-works-title" className="font-serif text-3xl text-ink md:text-4xl">
-            Designed to feel like a conversation with a trusted guide — powered by AI.
+            Designed to feel like a conversation with a trusted guide.
           </h2>
           <p className="mt-3 text-lg text-subtle md:text-xl">
             You stay in control of every word. We simply help you express it with warmth and clarity.

@@ -22,14 +22,14 @@ export function Hero({ className }: { className?: string }) {
           variants={staggerParent}
         >
           <m.span variants={fadeInUp} className="inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-sm font-medium text-brand-ink">
-            SilverNest AI for modern dating
+            Tech that understands maturity
           </m.span>
           <m.h1 variants={fadeInUp} className="font-serif text-4xl leading-tight text-ink md:text-5xl">
-            Feel confident about your dating profile
+            Write a dating profile that sounds like you
           </m.h1>
           <m.p variants={fadeInUp} className="text-lg text-subtle md:text-xl">
-            Kind, practical feedback powered by AI — no coaching packages, just thoughtful prompts
-            that help adults 40+ share their story with warmth, clarity, and confidence.
+            Warm, confident language for whatever comes next. SilverNest quietly guides your words so your
+            story feels honest, dignified, and ready for modern dating.
           </m.p>
           <m.div variants={fadeInUp} className="flex flex-wrap items-center gap-4">
             <PrimaryCTA />
@@ -39,11 +39,11 @@ export function Hero({ className }: { className?: string }) {
           </m.div>
           <m.div variants={fadeInUp} className="flex flex-wrap gap-6 text-sm text-subtle">
             <div>
-              <p className="font-semibold text-ink">Built with respectful AI</p>
+              <p className="font-semibold text-ink">Confidence first</p>
               <p>Guidance tuned specifically for mature daters — no scripts, just your voice elevated.</p>
             </div>
             <div>
-              <p className="font-semibold text-ink">Privacy-first</p>
+              <p className="font-semibold text-ink">Dignity protected</p>
               <p>Delete photos or text any time. Nothing is stored.</p>
             </div>
           </m.div>

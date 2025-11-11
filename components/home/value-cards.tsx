@@ -29,11 +29,10 @@ export function ValueCards({ className }: { className?: string }) {
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="max-w-2xl">
           <h2 id="value-prop" className="font-serif text-3xl text-ink md:text-4xl">
-            Gentle guidance for modern dating apps.
+            Gentle guidance, authentic to your life.
           </h2>
           <p className="mt-3 text-lg text-subtle md:text-xl">
-            The SilverNest method focuses on polish without pretense, so you sound like the best
-            version of yourself.
+            SilverNest sells confidence and dignity online for people re-entering dating. Every word respects where you are in life.
           </p>
         </div>
         <m.div

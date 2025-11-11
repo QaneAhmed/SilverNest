@@ -1,6 +1,6 @@
-# SilverNest · Experience Overview
+# SilverNest · Tech That Understands Maturity
 
-SilverNest helps adults 40+ feel confident about their dating profiles. This project delivers a calm, accessible, and production-ready experience built with the Next.js App Router.
+SilverNest helps adults 40+ feel confident about dating online by providing calm, dignified language prompts—not flashy AI marketing. The site reflects the brand promise: *“Write a dating profile that sounds like you — warm, confident, and ready for what’s next.”*
 
 ## ✨ Highlights
 - Thoughtful UX across **Home**, **Analyze**, **Result**, and **About** pages
